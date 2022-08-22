@@ -3,6 +3,7 @@ from pandas.tseries.offsets import BDay
 from datetime import datetime, timedelta 
 from typing import Union, List
 
+
 def _yahoo_stockdata(ticker:str, start:str=None, end:str=None, periods:str=None) -> pd.DataFrame:
     '''Lädt tägliche Aktiendaten über Yahoo-Finance in einen Dataframe
 
