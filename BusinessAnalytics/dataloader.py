@@ -47,6 +47,28 @@ def _yahoo_stockdata(ticker:str, start:str=None, end:str=None, periods:str=None)
     return None 
 
 def get_stock_data(ticker:Union[str, List], start:str=None, end:str=None, periods:str=None) -> pd.DataFrame:
+    '''Lädt tägliche Aktiendaten über Yahoo-Finance in einen Dataframe
+
+        INPUT:
+        - ticker: Kennung der Aktie oder Aktien gemäß Yahoo-Finance
+        - start: Anfangsdatum (dd-mm-yyyy)
+        - end: Enddatum (dd-mm-yyyy)
+        - periods: Anzahl Geschäftstage
+
+        Anmerkung: zwei der drei Parameter `start`, `end` und `periods` müssen angegeben werden.
+
+        OUTPUT: (pandas) Dataframe mit Yahoo-Finance-Daten für die jeweiligen Angaben
+
+        *******************************************************************************************
+
+        Beispiel 1: `get_stock_data(ticker="^GDAXI", start="10-10-1998", periods=1000)`
+        Gibt DAX-Kurse beginnend mit am 10.10.1998 für die nächsten 1000 Tage zurück
+
+        Beispiel 2: `get_stock_data(ticker=["^GDAXI", "AAPL"], start="10-10-1998", end="31-12-2021")`
+        Gibt Aktienkurse für DAX und Apple für den Zeitraum 10.10.1998 - 31.12.2021 zurück
+    '''
+
+
 
     if not isinstance(ticker, list): ticker = [ticker]
 
