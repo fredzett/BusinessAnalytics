@@ -7,23 +7,30 @@ import pandas as pd
 import numpy as np 
 import seaborn as sns
 
+
+
 ##  Set formatting for plotting
-def _set_colors() -> None:
+def _set_style() -> None:
+
+    def _hex2rgb(hex_colors): # see: https://stackoverflow.com/questions/29643352/converting-hex-to-rgb-value-in-python
+        hex_colors = [c.strip("#") for c in hex_colors]
+        rgb = [tuple(int(h[i:i+2], 16) for i in (0, 2, 4)) for h in hex_colors]
+        rgb_new = [tuple(t / 255 for t in x) for x in rgb]
+        return rgb_new
+
+    # Requires package "LovelyPlots"
+    plt.style.use(['ipynb', 'use_mathtext', 'colors10-ls'])
+
 
     ##  Set formatting for plotting
-    colormap=ListedColormap(sns.color_palette("pastel", 10))
-    COLORS = colormap.colors
-    colors = plt.cycler(color=COLORS)
-    sns.set_context('paper', font_scale=1.4)
-    plt.rcParams['figure.figsize'] = [9,6]
-    plt.rcParams['savefig.dpi'] = 300
-    plt.rc("legend", frameon=False)
-    plt.rc("axes.spines", top=False, right=False)
-    plt.rcParams['axes.prop_cycle'] = colors
+    hex = plt.rcParams['axes.prop_cycle'].by_key()['color']          
+    COLORS = _hex2rgb(hex)
+
 
     return COLORS
 
-COLORS = _set_colors()
+# When importing module chart styles will be accordingly
+COLORS = _set_style()
 
 ## Define available plots
 
@@ -127,7 +134,7 @@ def plot(data:pd.DataFrame, x:str, y:Union[str, List]=None, hue:str=None, plot_t
          ylabel:str=None, 
          title:str=None, 
          colors:List=None, 
-         show_legend:bool=True) -> MplAxes:
+         show_legend:bool=False) -> MplAxes:
     '''Erstellt Graphen für angegebene Daten
     
     Input:

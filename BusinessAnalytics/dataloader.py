@@ -48,7 +48,7 @@ def _yahoo_stockdata(ticker:str, start:str=None, end:str=None, periods:str=None)
     return None 
 
 def get_stock_data(ticker:Union[str, List], start:str=None, end:str=None, periods:str=None) -> pd.DataFrame:
-    '''Lädt tägliche Aktiendaten über Yahoo-Finance in einen Dataframe
+    '''Lädt tägliche Aktiendaten über Yahoo-Finance in einen Dataframe  
 
         INPUT:
         - ticker: Kennung der Aktie oder Aktien gemäß Yahoo-Finance
@@ -56,7 +56,7 @@ def get_stock_data(ticker:Union[str, List], start:str=None, end:str=None, period
         - end: Enddatum (dd-mm-yyyy)
         - periods: Anzahl Geschäftstage
 
-        Anmerkung: zwei der drei Parameter `start`, `end` und `periods` müssen angegeben werden.
+        Anmerkung: zwei der drei Parameter `start`, `end` und `periods` müssen angegeben werden.    
 
         OUTPUT: (pandas) Dataframe mit Yahoo-Finance-Daten für die jeweiligen Angaben
 
